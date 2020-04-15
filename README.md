@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/status-alpha-red)
 
-# Compound Value Vocabulary
+# Value Vocabulary
 
 A vocabulary for representing compound values, i.e., complex values
 that are composed out of one or more atomic values.  Such values are
@@ -10,7 +10,8 @@ not supported by the current Linked Data standards.
 
 ## Publication location
 
-This vocabulary is published in TriplyDB: [link](https://triplydb.com/Triply/value).
+This vocabulary is published on TriplyDB:
+<https://triplydb.com/Triply/value>
 
 ## Status
 

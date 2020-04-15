@@ -12,70 +12,75 @@ value:
 graph:vocab
   a owl:Ontology;
   rdfs:comment "A vocabulary for representing compound values, i.e., complex values that are composed out of one or more atomic values.  Such values are not supported by the current Linked Data standards."@en;
-  rdfs:label "Triply Compound Value Vocabulary"@en.
+  rdfs:label "Triply Value Vocabulary"@en.
 
 graph:vocab {
-  # Classes
+  # CLASSES
+
+  value:AtomicValue
+    rdfs:comment "The class of non-composed or atomic values, i.e., values that are composed or exactly one simple value."@en;
+    rdfs:label "atomic value"@en;
+    rdfs:subClassOf value:Value.
 
   value:ClosedInterval
     rdfs:comment "The class of all closed intervals, i.e., intervals whose two simple values are neither minus infinity nor plus infinity."@en;
     rdfs:label "closed interval"@en;
     rdfs:subClassOf value:Interval.
 
+  value:CompoundValue
+    rdfs:label "compound value"@en;
+    rdfs:subClassOf value:Value.
+
   value:Infinity
     rdfs:comment "The class of simple infinite values."@en;
     rdfs:label "infinity"@en;
-    rdfs:subClassOf value:Value.
+    rdfs:subClassOf value:AtomicValue.
 
   value:Interval
     rdfs:comment "The class of all interval values, i.e., complex values that are composed of examply two simple values.  The first value denotes the beginning of the interval; the second value denotes the end of the interval."@en;
     rdfs:label "interval value"@en;
-    rdfs:subClassOf value:Value.
+    rdfs:subClassOf value:CompoundValue.
 
   value:OpenInterval
     rdfs:comment "The class of all open interval values, i.e., intervals where at least one of the simple values is (positive or negative) infinity."@en;
     rdfs:label "open interval"@en;
     rdfs:subClassOf value:Interval.
 
-  value:Point
-    rdfs:comment "The class of all point values, i.e., values that are composed or exactly one simple value."@en;
-    rdfs:label "point value"@en;
-    rdfs:subClassOf value:Value.
-
   value:Value
     rdfs:comment "The generic class of all values, whether simple or complex."@en;
     rdfs:label "value"@en;
     rdfs:subClassOf rdfs:Resource.
 
-  # Properties
+  # PROPERTIES
 
   value:lowerExclusive
     a owl:ObjectProperty;
     rdfs:comment "The lower exlcusive value of an interval."@en;
     rdfs:domain value:Interval;
     rdfs:label "has lower exclusive value"@en;
-    rdfs:range value:Point.
+    rdfs:range value:AtomicValue.
 
   value:lowerInclusive
     a owl:ObjectProperty;
     rdfs:comment "The lower exlcusive value of an interval."@en;
     rdfs:domain value:Interval;
     rdfs:label "has lower exclusive value"@en;
-    rdfs:range value:Point.
+    rdfs:range value:AtomicValue.
 
   value:higherExclusive
     a owl:ObjectProperty;
     rdfs:comment "The higher exclusive value of an interval."@en;
     rdfs:domain value:Interval;
     rdfs:label "has lower exclusive value"@en;
-    rdfs:range value:Point.
+    rdfs:range value:AtomicValue.
 
   value:higherInclusive
     a owl:ObjectProperty;
     rdfs:comment "The higher inclusive value of an interval."@en;
     rdfs:domain value:Interval;
     rdfs:label "has lower exclusive value"@en;
-    rdfs:range value:Point.
+    rdfs:range value:AtomicValue.
+
 
   value:unit
     a owl:ObjectProperty;
@@ -84,7 +89,7 @@ graph:vocab {
     rdfs:label "has unit of measure"@en;
     rdfs:range rdfs:Datatype.
 
-  # Instances
+  # INSTANCES
 
   value:minusInfinity
     a value:Infinity;

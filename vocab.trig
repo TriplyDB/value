@@ -19,36 +19,46 @@ graph:vocab {
 
   value:AtomicValue
     rdfs:comment "The class of non-composed or atomic values, i.e., values that are composed or exactly one simple value."@en;
-    rdfs:label "atomic value"@en;
+    rdfs:label "Atomic value"@en;
     rdfs:subClassOf value:Value.
 
   value:ClosedInterval
     rdfs:comment "The class of all closed intervals, i.e., intervals whose two simple values are neither minus infinity nor plus infinity."@en;
-    rdfs:label "closed interval"@en;
+    rdfs:label "Closed interval"@en;
     rdfs:subClassOf value:Interval.
 
   value:CompoundValue
-    rdfs:label "compound value"@en;
+    rdfs:label "Compound value"@en;
     rdfs:subClassOf value:Value.
 
   value:Infinity
     rdfs:comment "The class of simple infinite values."@en;
-    rdfs:label "infinity"@en;
+    rdfs:label "Infinity"@en;
     rdfs:subClassOf value:AtomicValue.
 
   value:Interval
     rdfs:comment "The class of all interval values, i.e., complex values that are composed of examply two simple values.  The first value denotes the beginning of the interval; the second value denotes the end of the interval."@en;
-    rdfs:label "interval value"@en;
+    rdfs:label "Interval value"@en;
+    rdfs:subClassOf value:CompoundValue.
+
+  value:LikertScale
+    rdfs:comment "A scale consisting of 5 ordered values."@en;
+    rdfs:label "Likert scale"@en;
+    rdfs:subClassOf rdfs:Datatype.
+
+  value:LikertValue
+    rdfs:comment "A value that belongs to a Likert scale."@en;
+    rdfs:label "Likert value"@en;
     rdfs:subClassOf value:CompoundValue.
 
   value:OpenInterval
     rdfs:comment "The class of all open interval values, i.e., intervals where at least one of the simple values is (positive or negative) infinity."@en;
-    rdfs:label "open interval"@en;
+    rdfs:label "Open interval"@en;
     rdfs:subClassOf value:Interval.
 
   value:Value
     rdfs:comment "The generic class of all values, whether simple or complex."@en;
-    rdfs:label "value"@en;
+    rdfs:label "Value"@en;
     rdfs:subClassOf rdfs:Resource.
 
   # PROPERTIES
@@ -57,45 +67,83 @@ graph:vocab {
     a owl:ObjectProperty;
     rdfs:comment "The lower exlcusive value of an interval."@en;
     rdfs:domain value:Interval;
-    rdfs:label "has lower exclusive value"@en;
+    rdfs:label "Has lower exclusive value"@en;
     rdfs:range value:AtomicValue.
 
   value:lowerInclusive
     a owl:ObjectProperty;
     rdfs:comment "The lower exlcusive value of an interval."@en;
     rdfs:domain value:Interval;
-    rdfs:label "has lower exclusive value"@en;
+    rdfs:label "Has lower inclusive value"@en;
     rdfs:range value:AtomicValue.
 
   value:higherExclusive
     a owl:ObjectProperty;
     rdfs:comment "The higher exclusive value of an interval."@en;
     rdfs:domain value:Interval;
-    rdfs:label "has lower exclusive value"@en;
+    rdfs:label "Has higher exclusive value"@en;
     rdfs:range value:AtomicValue.
 
   value:higherInclusive
     a owl:ObjectProperty;
     rdfs:comment "The higher inclusive value of an interval."@en;
     rdfs:domain value:Interval;
-    rdfs:label "has lower exclusive value"@en;
+    rdfs:label "Has higher inclusive value"@en;
     rdfs:range value:AtomicValue.
 
+  value:likertHighest
+    a owl:ObjectProperty;
+    rdfs:comment "The relationship between a Likert value type and its highest Likert value."@en;
+    rdfs:domain vocab:LikertScale;
+    rdfs:label "Has highest value"@en;
+    rdfs:range vocab:LikertValue.
+
+  value:likertHigh
+    a owl:ObjectProperty;
+    rdfs:comment "The relationship between a Likert value type and its high (but not highest) Likert value."@en;
+    rdfs:domain vocab:LikertScale;
+    rdfs:label "Has high value"@en;
+    rdfs:range vocab:LikertValue;
+    value:lessThan value:likertHighest.
+
+  value:likertMiddle
+    a owl:ObjectProperty;
+    rdfs:comment "The relationship between a Likert value type and its middle Likert value."@en;
+    rdfs:domain vocab:LikertScale;
+    rdfs:label "Has middle value"@en;
+    rdfs:range vocab:LikertValue;
+    value:lessThan value:likertHigh.
+
+  value:likertLow
+    a owl:ObjectProperty;
+    rdfs:comment "The relationship between a Likert value type and its low (but not lowest) Likert value."@en;
+    rdfs:domain vocab:LikertScale;
+    rdfs:label "Has low value"@en;
+    rdfs:range vocab:LikertValue;
+    value:lessThan value:likertMiddle.
+
+  value:likertLowest
+    a owl:ObjectProperty;
+    rdfs:comment "The relationship between a Likert value type and its lowest Likert value."@en;
+    rdfs:domain vocab:LikertScale;
+    rdfs:label "Has lowest value"@en;
+    rdfs:range vocab:LikertValue;
+    value:lessThan value:likertLow.
 
   value:unit
     a owl:ObjectProperty;
     rdfs:comment "The relationship between a value and the unit of measure in which it is expressed."@en;
     rdfs:domain value:Value;
-    rdfs:label "has unit of measure"@en;
+    rdfs:label "Has unit of measure"@en;
     rdfs:range rdfs:Datatype.
 
   # INSTANCES
 
   value:minusInfinity
     a value:Infinity;
-    rdfs:label "negative infinity"@en.
+    rdfs:label "Negative infinity"@en.
 
   value:infinity
     a value:Infinity;
-    rdfs:label "positive infinity"@en.
+    rdfs:label "Positive infinity"@en.
 }
